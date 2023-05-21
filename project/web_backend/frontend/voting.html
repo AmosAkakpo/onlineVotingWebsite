@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;;
+}
+
+.votingForm{
+    width: 100%; /* Full width */
+    height: 100%; 
+    padding:5%;
+}
+input[type=text], input[type=password], input[type = number]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 7px;
+  }
+
+select{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+  
+  /* Set a style for all buttons */
+button {
+    background-color:rgba(10,92,72,255);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 7px;
+}
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  
+  /* Center the image and position the close button */
+  .logocontainer ,.makeSure{
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  span.ama{
+        color: rgba(10,92,72,255);
+  }
+  .container {
+    padding: 16px;
+  }
+  .logo{
+      font-size: 25px;
+  }
+  
+ 
+    </style>
+</head>
+<body> 
+    {% csrf_token %}
+    <form action="{% url 'voting' %}" method="post" class="votingForm">
+        {% csrf_token %}
+        <div class="logocontainer">
+            <p class="logo"><span class="ama">STRA-X</span> Electoral Commision</p>
+            <br> <br>
+        </div>   
+
+        <label for="user_id"><b>User ID</b></label>
+        <input id="user_id"  type="number" placeholder="Enter ID" minlength="10" maxlength="10" name="user_id" required>
+
+        <label for="city""><b>City</b></label>
+        <select name="city" id="city">
+            <option value="">Select a city</option>
+            <option value="Minter">Minter</option>
+            <option value="Saint Joseph">Saint Joseph</option>
+            <option value="Fort Stau">Fort Stau</option>
+            <option value="Las Bopen Du Tusil">Las Bopen Du Tusil</option>
+        </select>
+
+        <label for="candidate""><b>Candidate</b></label>
+
+        <select id="candidate" name="candidate" required>
+            <option value="">Select a candidate</option>
+            <option value="Candidate 1">Candidate 1</option>
+            <option value="Candidate 2">Candidate 2</option>
+            <option value="Candidate 3">Candidate 3</option>
+        </select>
+        <div class="makeSure">
+            <br> 
+            <p style="font-size: small;"> (Note: make sure you enter the correct information before you submit. <span style="text-decoration: underline; font-size: small; color: red; font-style: italic;">There will not be any second chance!!!</span> )</p>
+        </div>     
+        <br>
+        <button type="submit" onclick="submitForm()">Submit</button>
+    </form>
+
+
+    <script>
+        function submitForm() {
+    var user_id = document.getElementById('user_id').value;
+    var city = document.getElementById('city').value;
+    var candidate = document.getElementById('candidate').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/submit_form/');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert(xhr.responseText);
+        }
+        else {
+            alert('An error occurred while submitting the form');
+        }
+    };
+    xhr.send('user_id=' + encodeURIComponent(user_id) +
+             '&city=' + encodeURIComponent(city) +
+             '&candidate=' + encodeURIComponent(candidate));
+}
+
+    </script>
+</body>
+</html>

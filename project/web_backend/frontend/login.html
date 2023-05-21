@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+
+    <link rel="stylesheet" href="/web_backend/frontend/pageCss/loginPageStyle.css">
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;;
+}
+
+/* login page*/
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Set a style for all buttons */
+#login {
+    background-color:rgba(10,92,72,255);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+  
+#login:hover {
+    opacity: 0.8;
+  }
+
+#signup{
+    margin-bottom: 10px;
+}
+ 
+  /* Center the image and position the close button */
+  .logocontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  span.ama{
+        color: rgba(10,92,72,255);
+  }
+  .container {
+    padding: 16px;
+  }
+  .logo{
+      font-size: 25px;
+  }
+  span.psw {
+    float: right;
+  }
+  
+  
+  /* The Modal (background) */
+  .signin {
+   
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 100px;
+  }
+  
+  /* Modal Content/Box */
+  .signin-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 3px solid rgb(46, 45, 45);
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+    </style>
+</head>
+<body>
+    <div id="id01" class="signin">
+    
+        <form class="signin-content animate" action="" method="post">
+          {% csrf_token %}
+            <div class="container">
+
+                <div class="logocontainer">
+                    <p class="logo"><span class="ama">STRA-X</span> Electoral Commision</p>
+                </div>  
+
+                <label for="uname"><b>User Id</b></label>
+                <input maxlength="10" minlength="10" type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="userEnterPassword"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="userEnterPassword" required>
+                
+                <button type="submit" id="login">Login</button>
+    
+                <br>
+                <br>
+                <div>
+                  <p id="signup">Don't have an account?<a href="{% url 'signup' %}" style="text-decoration: none;color:rgba(10,92,72,255); font-size: 1rem;">Sign Up here</a></button></p>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+</body>
+</html>

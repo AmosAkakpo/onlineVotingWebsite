@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;;
+}
+
+.container {
+    
+    background-color: #fefefe;
+    margin: 10% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    width: 60%; /* Could be more or less, depending on screen size */
+  }
+
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  #login {
+    background-color:rgb(39, 121, 228);
+    color: white;
+    padding: 5px 5px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    
+}
+  
+#login:hover {
+    opacity: 0.8;
+    background-color: blue;
+  }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3 style="text-align: center;">Enter OTP sent to your Email</h3>
+        <form class="otpVerification" action="" method="post">
+            {% csrf_token %}
+            {% if message %}
+            <input  type="text" placeholder="Enter OTP" name="otp" required>
+            <div>
+                <p id="signup">Don't have an account?<a href="{% url 'signup' %}" style="text-decoration: none;color:rgba(10,92,72,255); font-size: 1rem;">Sign Up here</a></button></p>
+            </div>        
+            <button type="submit" id="login">Login</button>
+        </form>
+    </div>
+</body>
+</html>

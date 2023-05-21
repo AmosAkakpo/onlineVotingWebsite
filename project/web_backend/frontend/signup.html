@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;;
+}
+
+/* login page*/
+/* Full-width input fields */
+input[type=text], input[type=password], input[type = number]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 7px;
+  }
+
+select{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 7px;
+}
+  
+  /* Set a style for all buttons */
+button {
+    background-color:rgba(10,92,72,255);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 7px;
+}
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  
+  /* Center the image and position the close button */
+  .logocontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+  span.ama{
+        color: rgba(10,92,72,255);
+  }
+  .container {
+    padding: 16px;
+  }
+  .logo{
+      font-size: 25px;
+  }
+  
+  span.psw {
+    float: right;
+  }
+  
+  /* The Modal (background) */
+  .register {
+   
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 100px;
+  }
+  
+  /* Modal Content/Box */
+  .signup-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 3px solid rgb(46, 45, 45);
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+    </style>
+</head>
+<body>
+    <div id="id01" class="register">
+    
+        <form class="signup-content " action="" method="post">
+          {% csrf_token %}
+            <div class="container">
+
+                <div class="logocontainer">
+                    <p class="logo"><span class="ama">STRA-X</span> Electoral Commision</p>
+                    <h2>Sign Up</h2>
+                  </div>    
+
+                <label for="uId"><b>User ID</b></label>
+                <input  type="text" placeholder="Enter ID" minlength="10" maxlength="10" name="uId" required>
+                <label for="fname"><b>First Name</b></label>
+                <input  type="text" placeholder="Enter First Name" name="fname" required>
+
+                <label for="lname"><b>Last Name</b></label>
+                <input  type="text" placeholder="Enter Last Name" name="lname" required>
+
+                <label for="city""><b>City</b></label>
+                <select name="thecities" id="city">
+                  <option value="Minter">Minter</option>
+                  <option value="Saint Joseph">Saint Joseph</option>
+                  <option value="Fort Stau">Fort Stau</option>
+                  <option value="Las Bopen Du Tusil">Las Bopen Du Tusil</option>
+                </select>
+
+                <label for="theEmail"><b>Email</b></label>
+                <input  type="text" placeholder="Enter Email" name="theEmail" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input id="vefpsw1" type="password" placeholder="Enter Password" minlength="8" name="psw" required>
+                    
+                <label for="conpsw"><b>Confirm Password</b></label>
+                <input id="vefpsw2" type="password" placeholder="Enter Password" minlength="8" name="conpsw" required>
+                
+                <button type="submit">Submit</button>
+                <div style="margin-top: 5px;">
+                  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+      var password1 = document.getElementById("vefpsw1")
+      , confirm_password2 = document.getElementById("vefpsw2");
+
+      function validatePassword(){
+        if(password1.value != confirm_password2.value) {
+          confirm_password2.setCustomValidity("Passwords Don't Match");
+        } else {
+          confirm_password2.setCustomValidity('');
+        }
+      }
+
+      password1.onchange = validatePassword;
+      confirm_password2.onkeyup = validatePassword;
+    </script>
+
+</body>
+</html>

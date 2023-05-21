@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');    
+
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        #center{
+            width: 100vw;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            background-color:white ;
+
+            font-family: 'Poppins', sans-serif;
+            background-color: rgba(10,92,72,255);
+
+        }
+
+        .flag{
+            height: 70px;
+            width: 120px;
+            border: 2px solid;
+        }
+
+        .thelogo{
+            margin-top: 3vh;
+            margin-left: 2.5vw;
+            margin-right: 2.5vw;
+            
+            padding-bottom: 3vh;
+            text-align: center;}
+
+        .datetime{
+            margin-left: 2.5vw;
+            margin-right: 2.5vw;
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .dt{
+            font-family: 'Times New Roman'Times, serif; 
+            letter-spacing: 2px;
+        }
+        .content{
+            margin-left: 2.5vw;
+            margin-right: 2.5vw;
+            width: 95vw;
+            height: 80vh;
+            display: grid;
+
+            grid-template-columns: repeat(15,1fr);
+            grid-template-rows: repeat(10,1fr);
+
+            box-sizing: border-box;
+        }
+        .welcSign{
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0; 
+            float: right;
+        }
+        .electionMessage{
+            grid-column-start: 1;
+            grid-column-end: 11;
+            grid-row: 1/span 1;
+
+            text-align: center;
+            padding-top: 2%;
+            border: 2px solid black;
+        }
+        .candidate1Info{
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row: 2/span 8;
+
+            text-align: center;
+            padding-top: 2%;
+            border: 2px solid black;
+
+        }
+        .candidate2Info{
+            grid-column-start: 6;
+            grid-column-end: 11;
+            grid-row: 2/span 8;
+
+            text-align: center;
+            padding-top: 2%;
+            border: 2px solid black;
+
+        }
+        .art1{
+            grid-column-start: 11;
+            grid-column-end: 16;
+            grid-row-start:1;
+            grid-row-end:3;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+            
+            font-family: 'Times New Roman', Times, serif;
+            padding-top: 2%;
+            padding-left: 4%;
+            
+
+        }
+        .art2{
+            grid-column-start: 11;
+            grid-column-end: 16;
+            grid-row-start:3;
+            grid-row-end:5;
+            border-bottom: 2px solid;
+
+            font-family: 'Times New Roman', Times, serif;
+            padding-left: 4%;
+            padding-top: 2%;
+        }
+        .art3{
+            grid-column-start: 11;
+            grid-column-end: 16;
+            grid-row-start:5;
+            grid-row-end:7;
+            border-bottom: 2px solid;
+
+            font-family: 'Times New Roman', Times, serif;
+            padding-left: 4%;
+            padding-top: 2%;
+
+        }
+
+        .toVoting{
+            grid-row: 10 / span 1;
+            grid-column: 5/ span 2; 
+            background-color:rgba(10,92,72,255);
+            border-radius:  8px;
+            text-align: center;
+        }
+        .tvlink{
+            color: white;
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body onload="initClock()">
+    {% csrf_token %}
+    <div id="center">
+        <!--This the logo -->
+        <div class="thelogo">
+            <h2 style="color: white; text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">STRA-X Electoral Commision</h2>
+        </div>
+        <!--This is the code for the time and date under the logo -->
+        <div class="datetime" >
+            <div>
+                <span class="dt" id="dayname">Day</span>,
+                <span class="dt" id="month">Month</span>
+                <span class="dt" id="daynum">00</span>,
+                <span class="dt"id="year">Year</span>
+                |
+                <span class="dt" id="hour"> 00</span>:
+                <span class="dt" id="minute">00</span>:
+                <span class="dt" id="second">00</span>
+                <span class="dt" id="period">AM</span>
+            </div>
+
+            <div  class="welcSign">Welcome, {{ username }}!
+                <button style="background-color: black; padding: 5px 10px 5px 10px; box-sizing: border-box;border: none;"><a href="{% url 'logout'%}" style="text-decoration: none;color: white;" >Logout</a></button>
+            </div>
+            
+        </div> 
+
+    </div>
+
+    <!--content of the page-->
+
+    <div class="content">
+        <div class="art1">
+            <span style="text-decoration:underline;font-style: italic;"><b>Ai Jarvis 2.3:</b></span>
+            <span style="font-size: medium; letter-spacing: 0px;">The latest update, Jarvis 2.3 might be 
+                a game changer. Allowing you to complete various tasks, he could even be the only partner you will need for every ... </span>
+            <a href="#" style="font-size: small; font-style: italic;">read full article</a>  
+        </div>
+        <div class="art2">
+            <span style="text-decoration:underline; font-style: italic;"><b>Real Estate:</b></span>
+            <span style="font-size:medium;">Do you want to live in Fort stau? STau Properties provides, new luxurious appartments available, to rent or buy and ready to move in.</span>
+            <a href="#" style="font-size: medium;text-decoration: none;">Continue to STau Properties website</a>  
+
+        </div>
+        <div class="art3">
+            <span style="text-decoration:underline;font-style: italic;"><b>Breaking news:</b></span>
+            <span style="font-size: medium; letter-spacing: 0px;"> Minister of tourism, Ralph Reed, inaugarating the opening of the 'Hoomaha Land', this my might the begin...</span>
+            <a href="#" style="font-size: small; font-style: italic;">read full article</a>  
+        </div>
+            
+        <div class="electionMessage">
+            <Span>Message</Span>
+        </div>
+        <div class="candidate1Info">
+            Candidate 1
+        </div>
+        <div class="candidate2Info">
+            candidate 2
+        </div>
+      
+        <button class="toVoting">
+            <a class="tvlink" href="{% url 'voting' %}">
+                Proceed to Vote
+            </a>
+        </button>
+
+    </div> 
+
+    <script type="text/javascript">
+        //alert("WELCOME TO OUR NEWS WEBSITE")
+    
+        function updateClock(){
+            var now = new Date ();
+            var dname = now.getDay(),
+                mo = now.getMonth(),
+                dnum = now.getDate(),
+                yr = now.getFullYear(),
+                hou = now.getHours(),
+                min = now.getMinutes(),
+                sec = now.getSeconds(),
+                pe = "AM";
+
+
+            if (hou ==0){
+                hou =12;
+            } 
+            if ( hou>12){
+                hou = hou - 12; 
+                pe = "PM";
+            }
+
+            Number.prototype.pad=function(digits){
+                for(var n = this.toString(); n.length < digits; n=0+n);
+                return n;
+            }
+            var months = ["January", "February","March","April","May","June","July","August","September","October","November","December"];
+            var weeks = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+            var ids = ["dayname","month","daynum","year","hour","minute","second","period"];
+            var values = [weeks[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
+
+            for(var i=0; i< ids.length;i++)
+            {
+                document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+            }
+        }
+
+        function initClock(){
+            updateClock();
+            window.setInterval("updateClock()", 1);
+        }
+        
+        
+        //the heder sticky effect 
+        window.onscroll = function() {myFunction()};
+
+        var thelogo = document.getElementById("mythelogo");
+        var sticky = thelogo.offsetTop;
+
+        function myFunction() {
+        if (window.pageYOffset > sticky) {
+            thelogo.classList.add("sticky");
+        } else {
+            thelogo.classList.remove("sticky");
+        }
+        }
+    </script>
+</body>
+</html>
